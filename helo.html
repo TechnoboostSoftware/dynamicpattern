@@ -1669,10 +1669,12 @@
     function openDemoModal(e) {
       if (e) e.preventDefault();
       // Lazy-load the iframe src only on first open
-      if (!demoIframe.src) {
+      if (!demoIframe.src || !demoIframe.src.startsWith('https://demo.dynamicpartnersusa.com')) {
         demoIframe.src = DEMO_URL;
+        demoLoading.style.display = 'flex';
+      } else {
+        demoLoading.style.display = 'none';
       }
-      demoLoading.style.display = 'flex';
       demoOverlay.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
